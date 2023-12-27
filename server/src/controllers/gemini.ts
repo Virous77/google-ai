@@ -4,6 +4,8 @@ import {
 } from "@google/generative-ai";
 import { NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
+import { appendToFile, readFromFile, writeToFile } from "./file";
+import { marked } from "marked";
 dotenv.config();
 
 const gemini_api_key = process.env.API_KEY!;
@@ -87,7 +89,21 @@ export const getChat = async (
     }
 
     const response = result.response;
-    res.status(200).json({ response: response.text() });
+    appendToFile({ user: prompt, ai: marked.parse(response.text()) });
+    res.status(200).json({ response: "ok" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getChatHistory = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const data = readFromFile();
+    res.status(200).json({ history: data });
   } catch (error) {
     next(error);
   }

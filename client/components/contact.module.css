@@ -1,0 +1,80 @@
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: true;
+}
+
+.card {
+  --clr-1: #8360c3;
+  --clr-2: #5890aa;
+  --clr-3: #2ebf91;
+
+  background-color: var(--clr-1);
+  transform: scale3d(1, 1, 1);
+  transition: transform 200ms ease-in;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: -0.5rem;
+  border-radius: calc(1rem + 0.5rem);
+  background: conic-gradient(
+    from var(--gradient-angle),
+    var(--clr-1),
+    var(--clr-2),
+    var(--clr-3),
+    var(--clr-2),
+    var(--clr-1)
+  );
+  z-index: -1;
+  filter: blur(3rem);
+  animation: rotate-gradient 5s infinite linear;
+}
+
+@keyframes rotate-gradient {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+@media screen and (width >= 50em) {
+  .socials,
+  .card div > div > p,
+  .card img {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .card:hover .socials > div,
+  .card:hover > div > div > p,
+  .card:hover img {
+    transform: translateZ(1rem);
+  }
+
+  .card:hover .socials > div {
+    box-shadow: 1px 1px 1rem var(--clr-primary-100-5);
+  }
+
+  /* The dealy shouldn't be there when I hover the icons directly */
+  .card:hover .socials:not(:hover) > div:nth-child(2) {
+    transition-delay: 100ms;
+  }
+  .card:hover .socials:not(:hover) > div:nth-child(3) {
+    transition-delay: 200ms;
+  }
+  .card:hover .socials:not(:hover) > div:last-child {
+    transition-delay: 300ms;
+  }
+
+  .card:hover > div > div > p {
+    filter: drop-shadow(2px 2px 1rem var(--clr-primary-100-5));
+  }
+
+  .card:hover img {
+    box-shadow: 1px 1px 1rem var(--clr-primary-100-5);
+  }
+}

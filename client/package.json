@@ -15,6 +15,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "crypto-js": "^4.2.0",
+    "highlight.js": "^11.9.0",
+    "html-react-parser": "^5.0.11",
     "lucide-react": "^0.302.0",
     "next": "14.0.4",
     "next-themes": "^0.2.1",
@@ -25,6 +27,7 @@
     "vaul": "^0.8.0"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
     "@types/crypto-js": "^4.2.1",
     "@types/node": "^20",
     "@types/react": "^18",

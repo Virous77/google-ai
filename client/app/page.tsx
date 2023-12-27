@@ -1,5 +1,11 @@
+import Chat from "@/components/chat/chat";
+
 const HomePage = () => {
-  return <main></main>;
+  return (
+    <main>
+      <Chat />
+    </main>
+  );
 };
 
 export default HomePage;
