@@ -23,7 +23,7 @@ const ChatForm: React.FC<THistory> = ({ fetchHistory }) => {
   };
 
   return (
-    <div className=" w-[70%] m-auto relative">
+    <div className=" w-full  md:w-[70%] m-auto relative">
       <Textarea ref={textareaRef} />
       <Button
         onClick={() => onSubmit(textareaRef.current?.value || "")}
@@ -31,8 +31,8 @@ const ChatForm: React.FC<THistory> = ({ fetchHistory }) => {
       >
         send
       </Button>
-      <p className=" text-center text-[13px] mt-1 mb-1 ">
-        ChatGPT can make mistakes. Consider checking important information.
+      <p className=" text-center text-[10px] md:text-[13px] mt-1 mb-1 ">
+        Google AI can make mistakes. Consider checking important information.
       </p>
     </div>
   );

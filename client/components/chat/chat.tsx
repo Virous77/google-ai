@@ -34,12 +34,15 @@ const Chat = () => {
 
   return (
     <section className=" h-screen">
-      <div className=" pt-[100px] pb-[120px]">
+      <div className=" pt-[62px] pb-[100px]">
         <div className="prose  m-auto dark:prose-invert ">
           <div className=" flex flex-col gap-5">
             {history &&
               history?.map((item, index) => (
-                <div key={index} className=" bg-accent p-5 rounded-[10px]">
+                <div
+                  key={index}
+                  className=" bg-accent py-5 px-2 mx-2 md:mx-0 md:p-5 rounded-[10px]"
+                >
                   <span className=" flex items-center gap-4">
                     {" "}
                     <p className=" w-[25px] h-[25px] rounded-full bg-primary "></p>{" "}
@@ -47,7 +50,7 @@ const Chat = () => {
                   </span>
                   <div className=" flex items-start gap-3">
                     <p className=" w-[25px] h-[25px] rounded-full bg-foreground "></p>{" "}
-                    <div>{parse(item.ai)}</div>
+                    <div className="res">{parse(item.ai)}</div>
                   </div>
                 </div>
               ))}
