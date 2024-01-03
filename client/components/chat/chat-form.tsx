@@ -4,9 +4,6 @@ import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import React, { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import { postData } from "@/apis/api";
-import hljs from "highlight.js";
-import javascript from "highlight.js/lib/languages/javascript";
-hljs.registerLanguage("javascript", javascript);
 
 type THistory = {
   fetchHistory: () => void;
@@ -29,7 +26,6 @@ const ChatForm: React.FC<THistory> = ({ fetchHistory, setUserPrompt }) => {
   };
 
   useEffect(() => {
-    hljs.highlightAll();
     fetchHistory();
   }, []);
 

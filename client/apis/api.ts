@@ -1,12 +1,7 @@
-import { hashData } from "@/utils/utility";
 import axios from "axios";
 
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
-  headers: {
-    "Content-Type": "application/json",
-    authorization: `Bearer ${hashData()}`,
-  },
 });
 
 export const getData = async ({ endPoint }: { endPoint: string }) => {
