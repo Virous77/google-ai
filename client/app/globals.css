@@ -59,12 +59,13 @@
 }
 
 .res pre {
-  width: 350px;
+  width: 585px;
   overflow: scroll;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .res pre {
-    width: 100%;
+    width: 370px;
+    overflow: scroll;
   }
 }

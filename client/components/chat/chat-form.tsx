@@ -2,25 +2,36 @@
 
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
-import React, { useRef } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import { postData } from "@/apis/api";
+import hljs from "highlight.js";
+import javascript from "highlight.js/lib/languages/javascript";
+hljs.registerLanguage("javascript", javascript);
 
 type THistory = {
   fetchHistory: () => void;
+  userPrompt: string;
+  setUserPrompt: Dispatch<SetStateAction<string>>;
 };
 
-const ChatForm: React.FC<THistory> = ({ fetchHistory }) => {
+const ChatForm: React.FC<THistory> = ({ fetchHistory, setUserPrompt }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const onSubmit = async (prompt: string) => {
     try {
-      await postData({ endPoint: "/chat", data: { prompt } });
+      setUserPrompt(prompt);
       textareaRef.current!.value = "";
+      await postData({ endPoint: "/chat", data: { prompt } });
       fetchHistory();
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    hljs.highlightAll();
+    fetchHistory();
+  }, []);
 
   return (
     <div className=" w-full  md:w-[70%] m-auto relative">
